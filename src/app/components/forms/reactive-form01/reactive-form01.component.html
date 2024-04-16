@@ -1,0 +1,51 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+  <input formControlName="name" placeholder="Your name" class="my-2 form-control" [ngClass]="{
+      'is-invalid':
+        myForm.get('name')?.invalid &&
+        (myForm.get('name')?.dirty || myForm.get('name')?.touched)
+    }" />
+
+  <div class="my-2 alert alert-danger" *ngIf="
+      myForm.get('name')?.invalid &&
+      (myForm.get('name')?.dirty || myForm.get('name')?.touched)
+    ">
+    <div *ngIf="myForm.get('name')?.errors?.['required']">
+      First Name is Required
+    </div>
+    <div *ngIf="myForm.get('name')?.errors?.['minlength']">
+      First Name should have at least 5 characters
+    </div>
+  </div>
+
+
+  <input formControlName="email" placeholder="Your email" class=" my-2 form-control" [ngClass]="{
+    'is-invalid':
+    myForm.get('email')?.invalid &&
+    (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+    }" />
+
+  <div class="my-2 alert alert-danger" *ngIf="
+      myForm.get('email')?.invalid &&
+      (myForm.get('email')?.dirty || myForm.get('email')?.touched)
+    ">
+    <div *ngIf="myForm.get('email')?.errors?.['required']">
+      Email is Required
+    </div>
+    <div *ngIf="myForm.get('email')?.errors?.['pattern']">Email is Invalid</div>
+  </div>
+  <textarea formControlName="message" class="my-2 form-control" [ngClass]="{
+  'is-invalid':
+  myForm.get('message')?.invalid &&
+  (myForm.get('message')?.dirty || myForm.get('message')?.touched)
+  }" rows="5"></textarea>
+  <div class="my-2 alert alert-danger" *ngIf="
+      myForm.get('message')?.invalid &&
+      (myForm.get('message')?.dirty || myForm.get('message')?.touched)
+    ">
+    <div *ngIf="myForm.get('message')?.errors?.['required']">
+      Message is Required
+    </div>
+
+  </div>
+  <button type="submit">Send</button>
+</form>
